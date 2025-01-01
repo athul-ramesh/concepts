@@ -31,4 +31,22 @@ pub fn main() !void {
     // even have bunch of types with prefix "c_" for ABI compatibility.
     // ABI (Application binary interface) means seperate compiled binaries can communicate with each other.
     // zig also provides arbitary bit width integers that can be referenced by "i" or "u" followed by bit width.
+
+    // primitive values in zig are true/false, null, undefined
+    const booleanValueTrue = true;
+    const booleanValueFalse = false;
+    var found_index: ?u8 = null;
+    var x: i32 = undefined;
+
+    found_index = 1;
+    x = 2;
+    print("{} {} {?b} {} \n", .{ booleanValueFalse, booleanValueTrue, found_index, x });
+
+    //String literals
+    //"String literals are constant single-item Pointers to null-terminated byte arrays"
+    const bytes = "hello world";
+    print("{} {} {} {} \n", .{ @TypeOf(bytes), bytes.len, bytes[1], bytes[5] });
+
+    const @"identifier with spaces in it" = 0xff;
+    print("{}\n", .{@"identifier with spaces in it"});
 }
