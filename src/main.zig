@@ -2,6 +2,8 @@
 //! which should be placed at the top level as the name suggests.
 const std = @import("std");
 const print = std.debug.print;
+//imported other files into current file
+const Vec3 = @import("vec3.zig").Vec3;
 ///this is a doc comment for main method.
 ///doc comments can be multiline.
 // zig treats interleaved noraml comments as doc comment
@@ -49,4 +51,20 @@ pub fn main() !void {
 
     const @"identifier with spaces in it" = 0xff;
     print("{}\n", .{@"identifier with spaces in it"});
+
+    //Pointers
+    const singleItem: i32 = 12;
+    const singleItemPointer: *const i32 = &singleItem;
+    print("{}\n", .{singleItemPointer.*});
+
+    var mutalbleVal: u16 = 12;
+    const mutablePointer: *u16 = &mutalbleVal;
+    mutablePointer.* += 1;
+    print("pointer mutated value is {}\n", .{mutablePointer.*});
+
+    const v1 = Vec3.init(1.0, 0.0, 0.0);
+    const v2 = Vec3.init(0.0, 1.0, 0.0);
+    print("{}{}", .{ v1, v2 });
+    // const point = Point{ .x = 1, .y = 2 };
+    // print("the struct instance point has x as {} and y as {} \n", .{ point.x, point.y });
 }
