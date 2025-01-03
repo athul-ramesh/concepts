@@ -64,7 +64,21 @@ pub fn main() !void {
 
     const v1 = Vec3.init(1.0, 0.0, 0.0);
     const v2 = Vec3.init(0.0, 1.0, 0.0);
-    print("{}{}", .{ v1, v2 });
-    // const point = Point{ .x = 1, .y = 2 };
-    // print("the struct instance point has x as {} and y as {} \n", .{ point.x, point.y });
+    print("{}{}\n", .{ v1, v2 });
+
+    //anonymous struct
+    testAnonymousStruct(.{ .field1 = 1, .field2 = "hello" });
+
+    //anonymous struct without field names are called tuple
+    const values = .{
+        @as(u32, 1234),
+        @as(f64, 12.34),
+        true,
+        "hi",
+    } ++ .{false} ** 2;
+    print("values from tuple {}\n", .{values[4] == false});
+}
+
+fn testAnonymousStruct(args: anytype) void {
+    print("anonymous struct field 1: {} field 2: {s}\n", .{ args.field1, args.field2 });
 }
