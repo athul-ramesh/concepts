@@ -77,6 +77,20 @@ pub fn main() !void {
         "hi",
     } ++ .{false} ** 2;
     print("values from tuple {}\n", .{values[4] == false});
+
+    //switch
+    const val = 2;
+    const name = switch (val) {
+        1 => "one",
+        else => "two",
+    };
+    print("the switched val is {s} \n", .{name});
+
+    //for loop
+    const nums1 = [_]u8{ 1, 2, 3, 4, 4 };
+    for (nums1, 0..) |item, i| {
+        print("values at index {} is {}\n", .{ i, item });
+    }
 }
 
 fn testAnonymousStruct(args: anytype) void {
