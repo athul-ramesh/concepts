@@ -91,6 +91,24 @@ pub fn main() !void {
     for (nums1, 0..) |item, i| {
         print("values at index {} is {}\n", .{ i, item });
     }
+    var deferTest: u12 = 1;
+    {
+        defer deferTest = 3;
+        deferTest += 1;
+    }
+    print("defered value became {}\n", .{deferTest});
+
+    print("the fun with add is {}\n", .{arith(add, 1, 2)});
+}
+fn add(a: i32, b: i32) i32 {
+    return a + b;
+}
+fn sub(a: i32, b: i32) i32 {
+    return a - b;
+}
+const callFn = *const fn (a: i32, b: i32) i32;
+fn arith(fnType: callFn, a: i32, b: i32) i32 {
+    return fnType(a, b);
 }
 
 fn testAnonymousStruct(args: anytype) void {
