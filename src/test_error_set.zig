@@ -8,7 +8,8 @@ const AllocationError = error{
 };
 
 test "error types" {
-    std.testing.expect(foo(AllocationError.OutOfMemmory) == FileErrors.OutOfMemmory);
+    const err = foo(AllocationError.OutOfMemmory);
+    try std.testing.expect(err == FileErrors.OutOfMemmory);
 }
 
 fn foo(err: AllocationError) FileErrors {
